@@ -9,7 +9,7 @@ from databricks.sdk.core import Config
 
 @pytest.fixture
 def spark():
-  c = Config(cluster_id="CLUSTER")
+  c = Config(cluster_id="0112-222456-dx1cy12y")
   return SparkSession.builder.sdkConfig(c).getOrCreate()
 
 
