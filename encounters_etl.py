@@ -13,7 +13,8 @@ def classify_overnight_los(encounters):
     # Filter out any encounters where the patient hasn't been discharged
     .filter(col('stop').isNotNull())
     # Calculate How many overnight lenght of stays there were
-    .withColumn('overnight_los', f.dayofyear(col('stop')) - f.dayofyear(col('start')))
+    # .withColumn('overnight_los', f.dayofyear(col('stop')) - f.dayofyear(col('start')))
+    .withColumn('overnight_los', f.year(col('stop'))*1000+f.dayofyear(col('stop')) - f.year(col('stop'))*1000+f.dayofyear(col('start')))
     # Classify Length of Stay
     .withColumn(
       'los_type',
