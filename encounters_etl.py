@@ -14,7 +14,7 @@ def classify_overnight_los(encounters):
     .filter(col('stop').isNotNull())
     # Calculate How many overnight lenght of stays there were
     # .withColumn('overnight_los', f.dayofyear(col('stop')) - f.dayofyear(col('start')))
-    .withColumn('overnight_los', f.year(col('stop'))*1000+f.dayofyear(col('stop')) - f.year(col('stop'))*1000+f.dayofyear(col('start')))
+    .withColumn('overnight_los', f.year(col('stop'))*1000+f.dayofyear(col('stop')) - f.year(col('start'))*1000+f.dayofyear(col('start')))
     # Classify Length of Stay
     .withColumn(
       'los_type',
