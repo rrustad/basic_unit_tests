@@ -4,11 +4,13 @@ from encounters_etl import get_hospital_encounters, classify_overnight_los
 import pyspark.testing
 from pyspark.testing.utils import assertDataFrameEqual
 
-from databricks.connect import DatabricksSession
+from databricks.connect import DatabricksSession as SparkSession
+from databricks.sdk.core import Config
 
 @pytest.fixture
 def spark():
-  return DatabricksSession.builder.getOrCreate(cluster_id="0112-222456-dx1cy12y")
+  c = Config(cluster_id="CLUSTER")
+  return SparkSession.builder.sdkConfig(c).getOrCreate()
 
 
 def test_get_hospital_encounters(spark):
