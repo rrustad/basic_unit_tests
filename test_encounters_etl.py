@@ -8,7 +8,7 @@ from databricks.connect import DatabricksSession
 
 @pytest.fixture
 def spark():
-  return DatabricksSession.builder.getOrCreate()
+  return DatabricksSession.builder.getOrCreate(cluster_id="0112-222456-dx1cy12y")
 
 
 def test_get_hospital_encounters(spark):
